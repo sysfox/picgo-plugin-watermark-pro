@@ -1,6 +1,6 @@
 {
   "name": "picgo-plugin-watermark-pro",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "PicGo水印插件专业版，支持文字和图片水印",
   "main": "src/index.js",
   "scripts": {
