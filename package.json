@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "jest": "^30.0.0",
-    "eslint": "^8.54.0"
+    "eslint": "^9.0.0"
   },
   "peerDependencies": {
     "picgo": ">=1.0.0"
