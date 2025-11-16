@@ -5,17 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.1] - 2025-11-16
 
 ### Added
+- 测试通过，正式发版本
 
-- 完善的单元测试覆盖
-- 本地开发测试脚本
-- CI/CD 配置（GitHub Actions）
-- ESLint 代码规范检查
-- 自动链接到 PicGo 的开发脚本
-
-### Changed
 
 - 改进了文档，添加了详细的本地开发指南
 
