@@ -10,6 +10,11 @@
     "dev:test": "node test/local-test.js",
     "dev:link": "node scripts/link-to-picgo.js",
     "lint": "eslint src/ test/",
+    "build": "echo 'no build step defined'",
+    "release": "node scripts/release.js",
+    "release:patch": "npm run release -- patch",
+    "release:minor": "npm run release -- minor",
+    "release:major": "npm run release -- major",
     "prepare": "npm run test"
   },
   "keywords": [

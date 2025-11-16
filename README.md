@@ -125,6 +125,29 @@ bottom-left    bottom-center    bottom-right
 - Linux 需要安装 libvips：`apt-get install libvips-dev`（Ubuntu/Debian）
 - Windows 用户：sharp 会自动下载预编译的二进制文件
 
+### 一键发版本脚本
+
+项目已提供一键发版本脚本 `scripts/release.sh`，可自动完成版本号更新、生成 changelog、提交 git、打 tag 并发布到 npm。
+
+#### 使用方法
+
+```bash
+chmod +x scripts/release.sh
+./scripts/release.sh <新版本号>
+# 例如：
+./scripts/release.sh 1.2.3
+```
+
+脚本流程：
+1. 更新 `package.json` 版本号
+2. 生成 CHANGELOG（需安装 changelogithub）
+3. 提交并推送到 Git 仓库
+4. 打 tag 并推送
+5. 发布到 npm
+
+如需自定义可修改 `scripts/release.sh`。
+
+---
 ### 开发步骤
 
 1. **克隆仓库并安装依赖**
