@@ -1,0 +1,27 @@
+{
+  "name": "picgo-plugin-watermark-pro",
+  "version": "1.0.0",
+  "description": "PicGo水印插件专业版，支持文字和图片水印",
+  "main": "src/index.js",
+  "keywords": [
+    "picgo",
+    "picgo-plugin",
+    "watermark",
+    "image"
+  ],
+  "author": "sysfox",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sysfox/picgo-plugin-watermark-pro.git"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "peerDependencies": {
+    "picgo": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
