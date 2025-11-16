@@ -70,7 +70,11 @@ async function addWatermark(imageBuffer, watermarkConfig) {
   
   if (type === 'text' && text) {
     // 文字水印
-    watermarkBuffer = await generateTextWatermark(text, { fontSize, fontColor, opacity })
+    const svgBuffer = await generateTextWatermark(text, { fontSize, fontColor, opacity })
+    // 将 SVG 转换为 PNG
+    watermarkBuffer = await sharp(svgBuffer)
+      .png()
+      .toBuffer()
   } else if (type === 'image' && imagePath && fs.existsSync(imagePath)) {
     // 图片水印
     const metadata = await sharp(imageBuffer).metadata()
