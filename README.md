@@ -116,6 +116,121 @@ bottom-left    bottom-center    bottom-right
 
 本插件使用 [sharp](https://sharp.pixelplumbing.com/) 进行图片处理，这是一个高性能的Node.js图片处理库。
 
+## 本地开发指南
+
+### 环境要求
+
+- Node.js >= 12.0.0（推荐使用 Node.js 16 或 18）
+- macOS 需要安装 libvips：`brew install vips`
+- Linux 需要安装 libvips：`apt-get install libvips-dev`（Ubuntu/Debian）
+- Windows 用户：sharp 会自动下载预编译的二进制文件
+
+### 开发步骤
+
+1. **克隆仓库并安装依赖**
+
+```bash
+git clone https://github.com/sysfox/picgo-plugin-watermark-pro.git
+cd picgo-plugin-watermark-pro
+npm install
+```
+
+2. **运行本地测试**
+
+```bash
+# 运行本地快速测试（生成带水印的测试图片）
+npm run dev:test
+
+# 运行单元测试
+npm test
+
+# 运行测试并生成覆盖率报告
+npm run test:coverage
+
+# 监听模式运行测试
+npm run test:watch
+```
+
+3. **链接到 PicGo 进行调试**
+
+```bash
+# 自动将插件链接到 PicGo 插件目录
+npm run dev:link
+
+# 或者手动创建软链接
+ln -s $(pwd) ~/.picgo/plugins/picgo-plugin-watermark-pro
+```
+
+然后：
+- 重启 PicGo 应用
+- 进入「插件设置」查看并启用 watermark-pro
+- 配置水印参数
+- 上传图片测试
+
+4. **代码规范检查**
+
+```bash
+npm run lint
+```
+
+### 项目结构
+
+```
+picgo-plugin-watermark-pro/
+├── src/
+│   └── index.js           # 插件主文件
+├── test/
+│   ├── local-test.js      # 本地快速测试脚本
+│   ├── watermark.test.js  # Jest 单元测试
+│   └── watermark-test-helper.js  # 测试辅助函数
+├── scripts/
+│   └── link-to-picgo.js   # 自动链接到 PicGo 的脚本
+├── .github/
+│   └── workflows/
+│       ├── ci.yml         # CI 配置
+│       └── release.yml    # 发布配置
+├── package.json
+├── .eslintrc.js
+├── .gitignore
+├── CHANGELOG.md
+└── README.md
+```
+
+### 调试技巧
+
+1. **查看 PicGo 日志**：PicGo 应用的日志通常在 `~/.picgo/picgo.log`
+2. **使用本地测试脚本**：修改代码后运行 `npm run dev:test` 快速验证
+3. **添加 console.log**：在 `src/index.js` 中添加日志输出
+4. **检查水印输出**：本地测试会在 `test/` 目录生成带水印的图片
+
+### 常见开发问题
+
+#### sharp 安装失败
+
+```bash
+# macOS
+brew install vips
+npm rebuild sharp --force
+
+# 确保 Xcode Command Line Tools 已安装
+xcode-select --install
+```
+
+#### 插件未在 PicGo 中显示
+
+- 确认软链接创建成功：`ls -la ~/.picgo/plugins/`
+- 重启 PicGo 应用
+- 检查 PicGo 日志是否有错误信息
+
+#### 修改代码后不生效
+
+- 如果使用 PicGo 桌面应用，需要重启应用
+- 清理 `node_modules` 并重新安装：`rm -rf node_modules && npm install`
+
+## 依赖说明
+
+本插件使用 [sharp](https://sharp.pixelplumbing.com/) 进行图片处理，这是一个高性能的Node.js图片处理库。
+
 ## 常见问题
 
 ### Q: 水印不显示怎么办？

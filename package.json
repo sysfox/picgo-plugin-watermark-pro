@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "PicGo水印插件专业版，支持文字和图片水印",
   "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "dev:test": "node test/local-test.js",
+    "dev:link": "node scripts/link-to-picgo.js",
+    "lint": "eslint src/ test/",
+    "prepare": "npm run test"
+  },
   "keywords": [
     "picgo",
     "picgo-plugin",
@@ -18,10 +27,29 @@
   "dependencies": {
     "sharp": "^0.33.0"
   },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.54.0"
+  },
   "peerDependencies": {
     "picgo": ">=1.0.0"
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ]
   }
 }
