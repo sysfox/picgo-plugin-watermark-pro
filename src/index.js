@@ -1,5 +1,4 @@
 const sharp = require('sharp')
-const path = require('path')
 const fs = require('fs')
 
 // 水印位置映射
@@ -23,11 +22,18 @@ async function generateTextWatermark(text, options) {
   const width = text.length * fontSize * 0.6 + 40
   const height = fontSize * 2
   
-  // 解析颜色
-  const color = fontColor.replace('#', '')
+  // 解析颜色，确保格式正确
+  let color = fontColor.replace('#', '')
+  // 如果颜色格式不正确，使用默认白色
+  if (!/^[0-9A-Fa-f]{6}$/.test(color)) {
+    color = 'ffffff'
+  }
   const r = parseInt(color.substring(0, 2), 16)
   const g = parseInt(color.substring(2, 4), 16)
   const b = parseInt(color.substring(4, 6), 16)
+  
+  // 确保透明度在有效范围内
+  const validOpacity = Math.max(0, Math.min(1, parseFloat(opacity) || 0.5))
   
   // 创建SVG文字
   const svg = `
@@ -36,7 +42,7 @@ async function generateTextWatermark(text, options) {
             font-size="${fontSize}" 
             font-family="Arial, sans-serif" 
             fill="rgb(${r},${g},${b})" 
-            fill-opacity="${opacity}">
+            fill-opacity="${validOpacity}">
         ${text}
       </text>
     </svg>
@@ -69,7 +75,9 @@ async function addWatermark(imageBuffer, watermarkConfig) {
     // 图片水印
     const metadata = await sharp(imageBuffer).metadata()
     const imageWidth = metadata.width
-    const watermarkWidth = Math.floor(imageWidth * scale)
+    // 确保缩放比例在有效范围内 (0.01 到 1)
+    const validScale = Math.max(0.01, Math.min(1, parseFloat(scale) || 0.2))
+    const watermarkWidth = Math.floor(imageWidth * validScale)
     
     watermarkBuffer = await sharp(imagePath)
       .resize({ width: watermarkWidth })
