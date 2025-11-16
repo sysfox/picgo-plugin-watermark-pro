@@ -107,6 +107,11 @@ dist
 # Docusaurus cache and generated files
 .docusaurus
 
+# Test files
+test.js
+test-watermark.js
+demo.js
+
 # Serverless directories
 .serverless/
 
