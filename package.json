@@ -30,7 +30,7 @@
     "url": "https://github.com/sysfox/picgo-plugin-watermark-pro.git"
   },
   "dependencies": {
-    "sharp": "^0.34.0"
+    "sharp": "^0.35.0"
   },
   "devDependencies": {
     "jest": "^30.0.0",
